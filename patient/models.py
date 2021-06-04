@@ -13,7 +13,6 @@ class Patient(models.Model):
     )
     gender = models.CharField(max_length=30, choices=GENDER_CHOICES)
 
-class Meta:
-    ordering = ['created']
-
+def __str__(self):
+    return self
 

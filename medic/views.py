@@ -13,7 +13,7 @@ def medic_list(request):
     List all or create a new medic
     """
     if request.method == 'GET':
-        medic = medic.objects.all()
+        medic = Medic.objects.all()
         serializer = MedicSerializer(medic, many=True)
         return JsonResponse(serializer.data, safe=False)
     

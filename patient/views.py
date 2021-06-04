@@ -1,53 +1,28 @@
-from django.shortcuts import render
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.parsers import JSONParser
 from patient.models import Patient
 from patient.serializers import PatientSerializer
+from rest_framework import generics
+from django.contrib.auth.models import User
+from patient.serializers import UserSerializer
+from rest_framework import permissions
 
 
-# Create your views here.
-@csrf_exempt
-def patient_list(request):
-    """
-    List all or create a new patient
-    """
-    if request.method == 'GET':
-        patient = Patient.objects.all()
-        serializer = PatientSerializer(patient, many=True)
-        return JsonResponse(serializer.data, safe=False)
-    
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = PatientSerializer(data=data)
-        if serializer.is_valid():
-            serilizer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status(400))
-        
-@csrf_exempt
-def patient_detail(request, pk):
-    """
-    Retrieve, update or delete a patient.
-    """
-    try:
-        patient = Patient.objects.get(pk=pk)
-    except Patient.DoesNotExist:
-        return HttpResponse(status=404)
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
-    if request.method == 'GET':
-        serializer = PatientSerializer(patient)
-        return JsonResponse(serializer.data)
+class UserDetail(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
-    elif request.method == 'PUT':
-        data = JSONParser().parse(request)
-        serializer = PatientSerializer(patient, data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data)
-        return JsonResponse(serializer.errors, status=400)
 
-    elif request.method == 'DELETE':
-        patient.delete()
-        return HttpResponse(status=204)
+class PatientList(generics.ListCreateAPIView):
+    queryset = Patient.objects.all()
+    serializer_class = PatientSerializer
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+class PatientDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Patient.objects.all()
+    serializer_class = PatientSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
