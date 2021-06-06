@@ -4,15 +4,14 @@ from django.contrib.auth.models import User
 class PatientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Patient
-        fields = ['id', 'email', 'age', 'name', 'country', 'gender', 'patient']
+        fields = ['id', 'email', 'age', 'name', 'country', 'gender']
         
 class UserSerializer(serializers.ModelSerializer):
     patient = serializers.PrimaryKeyRelatedField(many=True, queryset=Patient.objects.all())
-owner = serializers.ReadOnlyField(source='owner.username')
-
+    owner = serializers.ReadOnlyField(source='owner.username')
     class Meta:
         model = User
-        fields = ['id', 'username', 'patient', 'owner']
+        fields = ['id', 'username', 'owner']
 
       
 
