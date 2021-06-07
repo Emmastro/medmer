@@ -1,15 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
-# Create your models here.
-class Medic(models.Model):
-    email = models.EmailField()
-    medic_id = models.IntegerField()
-    name = models.CharField(max_length=100)
-    Speciality = models.CharField(max_length=50)
-    country = models.CharField(max_length=50)
+class Medic(User):
+    """ """
 
-class Meta:
-    ordering = ['created']
-
-
+    country = models.CharField(max_length=120)
+    medic_id = models.CharField(max_length=120)
+    speciality = models.CharField(max_length=120)
