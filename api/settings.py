@@ -26,8 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'medic.apps.MedicConfig',
-    'patient.apps.PatientConfig',
+    'medic',
+    'patient',
 ]
 
 
