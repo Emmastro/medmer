@@ -4,4 +4,5 @@ from medic import views
 urlpatterns = [
   path('', views.MedicList.as_view()),
   path('<int:pk>/', views.MedicDetail.as_view()),
+  #path('', views.RegisterView.as_view()),
 ]
