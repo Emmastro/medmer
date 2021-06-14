@@ -1,4 +1,3 @@
-
 from medic.models import Medic
 from medic.serializers import MedicSerializer
 from rest_framework import generics
@@ -6,23 +5,24 @@ from rest_framework import permissions
 from medic.permissions import IsOwnerOrReadOnly
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
-from rest_framework.decorators import api_view
 from rest_framework.reverse import reverse
 import jwt, datetime
 
 
     
-
-class MedicList(generics.ListCreateAPIView):
-    """
-
-    """
+class RegisterView(generics.ListCreateAPIView):
     queryset = Medic.objects.all()
     serializer_class = MedicSerializer
-    
-   
-    # TODO: implement and test authentication to uncomment the next line
     def post(self, request):
+        serializer = MedicSerializer(data=request.data)
+        serializer.is_vaid(raiseexception=True)
+        serializer.save()
+        return Response(serializer.data)
+class LoginView(generics.ListCreateAPIView):
+    queryset = Medic.objects.all()
+    serializer_class = MedicSerializer 
+    def post(self, request):
+
         email = request.data['email']
         password = request.data['password']
         
@@ -50,18 +50,29 @@ class MedicList(generics.ListCreateAPIView):
         }
         return Response
 
+class MedicList(generics.ListCreateAPIView):
+    """
+
+    """
+    queryset = Medic.objects.all()
+    serializer_class = MedicSerializer
+    
+   
+    # TODO: implement and test authentication to uncomment the next line
+    #d
     def perform_create(self, serializer):
+
         """
-    allows us to associate users with the instances they create 
-    at the same time preventing the creation od duplicates
+        allows us to associate users with the instances they create 
+        at the same time preventing the creation od duplicates
         """
-        queryset = SignupRequest.objects.filter(user=self.request.user)
+        queryset = Medic.objects.filter(user=self.request.user)
         if queryset.exists():
-            raise ValidationError('You have already signed up')
+           raise ValidationError('You have already signed up')
         serializer.save(user=self.request.user)
         
         
-        #permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+        permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
     #def post(self, request, *args, **kwargs):
