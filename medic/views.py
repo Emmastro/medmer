@@ -15,7 +15,7 @@ class RegisterView(generics.ListCreateAPIView):
     serializer_class = MedicSerializer
     def post(self, request):
         serializer = MedicSerializer(data=request.data)
-        serializer.is_vaid(raiseexception=True)
+        serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
 class LoginView(generics.ListCreateAPIView):
