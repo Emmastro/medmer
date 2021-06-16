@@ -11,3 +11,19 @@ class MedicSerializer(serializers.ModelSerializer):
     class Meta:
         model = Medic
         fields = ['id', 'username', 'first_name', 'last_name', 'email', 'country', 'medic_id', 'speciality', 'password', 'owner']
+
+class LoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Medic
+        fields = ['username', 'password']
+
+#Register Serializer
+#class RegisterSerializer(serializer.ModelSerializer):
+    #class Meta:
+        #model = Medic
+        #fields = ['id', 'username', 'first_name', 'last_name', 'email', 'country', 'medic_id', 'speciality', 'password', 'owner']
+        #extra_kwargs = {'password': {'write_only': True} }
+
+    #def create(self, validate_data):
+        #user = Medic.objects.create_user(validate_data['username'], validate_data['email'], validate_data[password])
+        #return user

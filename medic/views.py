@@ -1,5 +1,6 @@
 from medic.models import Medic
 from medic.serializers import MedicSerializer
+from medic.serializers import LoginSerializer
 from rest_framework import generics
 from rest_framework import permissions
 from medic.permissions import IsOwnerOrReadOnly
@@ -7,48 +8,59 @@ from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.reverse import reverse
 import jwt, datetime
+from django.contrib.auth.hashers import check_password
+
 
 
     
-class RegisterView(generics.ListCreateAPIView):
-    queryset = Medic.objects.all()
+class RegisterView(generics.GenericAPIView):
     serializer_class = MedicSerializer
+
     def post(self, request):
         serializer = MedicSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(serializer.data)
-class LoginView(generics.ListCreateAPIView):
-    queryset = Medic.objects.all()
-    serializer_class = MedicSerializer 
+        return Response(request.data)
+       
+class LoginView(generics.GenericAPIView):
+    serializer_class = LoginSerializer
     def post(self, request):
 
-        email = request.data['email']
+        username = request.data['username']
         password = request.data['password']
         
                       
-        user = Medic.objects.filter(email=email).first()
+        user = Medic.objects.all().filter(username=username)
+       # print(user) #
+        #print(username)
+        print(password)
+        print(Medic.objects.filter(username=username))
+    
 
         if user is None:
             raise AuthenticationFailed('user not found!')
+        else:
         
-        if not user.check_password(password):
-            raise AuthenticationFailed('Incorrect password!')
+            pwd = user.values()[0]['password']
+        
+            if password != pwd:
+                raise AuthenticationFailed('Incorrect password!')
+        
         payload = {
-            'id': user.id,
+            'id': user.values()[0]['id'],
             'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60),
-            'iat': datetime.datetime.utc(now)
+            'iat': datetime.datetime.utcnow()
 
         }
 
-        token = jwt.encode(payload, 'secret', algorithm='HS256').decode('utf-8')
+        token = jwt.encode(payload, 'secret', algorithm='HS256') #.decode('utf-8')
         response = Response()
 
         response.set_cookie(key='jwt', value=token, httponly=True)
         response.data = {
             'jwt' : token
         }
-        return Response
+        return response
 
 class MedicList(generics.ListCreateAPIView):
     """
@@ -60,19 +72,19 @@ class MedicList(generics.ListCreateAPIView):
    
     # TODO: implement and test authentication to uncomment the next line
     #d
-    def perform_create(self, serializer):
+    #def perform_create(self, serializer):
 
-        """
-        allows us to associate users with the instances they create 
-        at the same time preventing the creation od duplicates
-        """
-        queryset = Medic.objects.filter(user=self.request.user)
-        if queryset.exists():
-           raise ValidationError('You have already signed up')
-        serializer.save(user=self.request.user)
+        #"""
+        #allows us to associate users with the instances they create 
+        #at the same time preventing the creation od duplicates
+        #"""
+       # queryset = Medic.objects.filter(user=self.request.user)
+        #if queryset.exists():
+           #raise ValidationError('You have already signed up')
+       # serializer.save(user=self.request.user)
         
         
-        permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
     #def post(self, request, *args, **kwargs):
@@ -82,5 +94,5 @@ class MedicList(generics.ListCreateAPIView):
 class MedicDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Medic.objects.all()
     serializer_class = MedicSerializer
-    #permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
