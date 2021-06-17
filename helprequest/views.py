@@ -6,7 +6,10 @@ from rest_framework.response import Response
 
 
 class HelpRequestList(generics.ListCreateAPIView):
-    """returns the list of help requests of a given patient"""
+    """
+    Get: returns the list of help requests of a given patient \n
+    Post: save a new help request
+    """
 
     serializer_class = HelpRequestSerializer
     #permission_classes = [permissions.IsAuthenticatedOrReadOnly]
@@ -14,6 +17,7 @@ class HelpRequestList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
 
 class PatientHelpRequestList(generics.ListCreateAPIView):
     """returns the list of help requests of a given patient"""
@@ -45,10 +49,11 @@ class MedicHelpRequestList(generics.ListCreateAPIView):
 
 
 class HelpRequestDetail(generics.RetrieveUpdateDestroyAPIView):
-    """returns details of a specific help request """
+
     serializer_class = PatientSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get(self, request, pk):
+        """returns details of a specific help request """
         queryset = HelpRequest.objects.get(pk=pk)
         return Response(queryset)
