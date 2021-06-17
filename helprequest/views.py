@@ -1,5 +1,6 @@
 from helprequest.models import HelpRequest
-from patient.serializers import PatientSerializer, HelpRequestSerializer
+from patient.serializers import PatientSerializer
+from helprequest.serializers import HelpRequestSerializer
 from rest_framework import generics
 from rest_framework import permissions
 from rest_framework.response import Response
