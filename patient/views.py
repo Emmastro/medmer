@@ -37,14 +37,13 @@ class LoginView(generics.GenericAPIView):
         print(Patient.objects.filter(username=username))
     
 
-        if user is None:
+        if username != user:
             raise AuthenticationFailed('user not found!')
-        else:
         
-            pwd = user.values()[0]['password']
+        pwd = Patient.objects.all().filter(password=password)
         
-            if password != pwd:
-                raise AuthenticationFailed('Incorrect password!')
+        if password != pwd:
+            raise AuthenticationFailed('Incorrect password!')
         
         payload = {
             'id': user.values()[0]['id'],
