@@ -53,7 +53,7 @@ class LoginView(generics.GenericAPIView):
 
         }
 
-        token = jwt.encode(payload, 'secret', algorithm='HS256') #.decode('utf-8')
+        token = jwt.encode(payload, 'secret', algorithm='HS256').decode('utf-8')
         response = Response()
 
         response.set_cookie(key='jwt', value=token, httponly=True)
@@ -61,6 +61,22 @@ class LoginView(generics.GenericAPIView):
             'jwt' : token
         }
         return response
+    
+class Userview(generics.GenericAPIView):
+    def get(self, request):
+        token = request.COOKIES.get('jwt')
+
+        if not token:
+            raise AuthenticationFailed('unauthenticated!')
+        
+        try:
+            payload = jwt.decode(token, 'secret', algorithm=['HS256'])
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed('unauthenticated!')
+
+        user = Medic.objects.filter(id=payload['id']).first()
+        serializer = MedicSerializer(user)
+        return Response(serializer.data)
 
 class MedicList(generics.ListCreateAPIView):
     """
