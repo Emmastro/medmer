@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'medic',
     'patient',
     'helprequest',
+    'home',
 ]
 
 
