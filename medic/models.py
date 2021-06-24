@@ -12,8 +12,8 @@ class Medic(User):
     speciality = models.CharField(max_length=120)
 
 
-@receiver(post_save, sender=User)
-def update_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Medic.objects.create(user=instance)
-    instance.profile.save()
+#@receiver(post_save, sender=User)
+#def update_user_medic(sender, instance, created, **kwargs):
+ #   if created:
+  #      Medic.objects.create(user=instance)
+  #  instance.Medic.save()

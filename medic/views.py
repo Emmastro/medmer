@@ -10,17 +10,27 @@ from django.shortcuts import render, redirect
 
 def register(request):
     if request.method == 'POST':
-        form = MedicForm(request.POST)
+        form = MedicForm(request.POST, request.FILES)
         if form.is_valid():
+
             form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('home')
-    else:
-        form = MedicForm()
-    return render(request, 'medic_registration.html', {'form' : form})
+       # print(form)
+    context = {'form':form}
+    
+
+    return render(request, 'medic_registration.html', context)
+        #form = MedicForm(request.POST)
+        #print(form)
+       # if form.is_valid():
+           # form.save()
+           # username = form.cleaned_data.get('username')
+           # raw_password = form.cleaned_data.get('password')
+           # user = authenticate(username=username, password=raw_password)
+           # login(request, user)
+          #  return redirect('home')
+   # else:
+        #form = MedicForm()
+    #return render(request, 'medic_registration.html', {'form' : form})
 
 
 
