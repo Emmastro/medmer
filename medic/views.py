@@ -1,89 +1,99 @@
 from medic.models import Medic
-from medic.serializers import MedicSerializer
-from medic.serializers import LoginSerializer
-from rest_framework import generics
-from rest_framework import permissions
-from medic.permissions import IsOwnerOrReadOnly
-from rest_framework.response import Response
-from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.reverse import reverse
 import jwt, datetime
 from django.contrib.auth.hashers import check_password
+from django.views.generic.edit import FormView
+from medic.forms import MedicForm
+from django.shortcuts import render, redirect
+
+
+
+def register(request):
+    if request.method == 'POST':
+        form = MedicForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('home')
+    else:
+        form = MedicForm()
+    return render(request, 'medic_registration.html', {'form' : form})
 
 
 
     
-class RegisterView(generics.GenericAPIView):
-    serializer_class = MedicSerializer
 
-    def post(self, request):
-        serializer = MedicSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(request.data)
+
+        #serializer = MedicSerializer(data=request.data)
+        #serializer.is_valid(raise_exception=True)
+       # serializer.save()
+       # return Response(request.data)
        
-class LoginView(generics.GenericAPIView):
-    serializer_class = LoginSerializer
-    def post(self, request):
+#class LoginView(generics.GenericAPIView):
+   # serializer_class = LoginSerializer
+   # def post(self, request):
 
-        username = request.data['username']
-        password = request.data['password']
+        #username = request.data['username']
+       # password = request.data['password']
         
                       
-        user = Medic.objects.all().filter(username=username)
+       # user = Medic.objects.all().filter(username=username)
        # print(user) #
         #print(username)
-        print(password)
-        print(Medic.objects.filter(username=username))
+      #  print(password)
+        #print(Medic.objects.filter(username=username))
     
 
-        if username != user:
-            raise AuthenticationFailed('user not found!')
+        #if username != user:
+            #raise AuthenticationFailed('user not found!')
         
         
-        pwd = Medic.objects.all().filter(password=password)
+       # pwd = Medic.objects.all().filter(password=password)
         
-        if password != pwd:
-            raise AuthenticationFailed('Incorrect password!')
+        #if password != pwd:
+            #raise AuthenticationFailed('Incorrect password!')
         
-        payload = {
-            'id': user.values()[0]['id'],
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60),
-            'iat': datetime.datetime.utcnow()
+       # payload = {
+           # 'id': user.values()[0]['id'],
+           # 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60),
+            #'iat': datetime.datetime.utcnow()
 
-        }
+       # }
 
-        token = jwt.encode(payload, 'secret', algorithm='HS256').decode('utf-8')
-        response = Response()
+        #token = jwt.encode(payload, 'secret', algorithm='HS256').decode('utf-8')
+        #response = Response()
 
-        response.set_cookie(key='jwt', value=token, httponly=True)
-        response.data = {
-            'jwt' : token
-        }
-        return response
+       # response.set_cookie(key='jwt', value=token, httponly=True)
+        #response.data = {
+           # 'jwt' : token
+       # }
+        #return response
     
-class Userview(generics.GenericAPIView):
-    def get(self, request):
-        token = request.COOKIES.get('jwt')
+#class Userview(generics.GenericAPIView):
+   # d#ef get(self, request):
+        #token = request.COOKIES.get('jwt')
 
-        if not token:
-            raise AuthenticationFailed('unauthenticated!')
+       # if not token:
+           # raise AuthenticationFailed('unauthenticated!')
         
-        try:
-            payload = jwt.decode(token, 'secret', algorithm=['HS256'])
-        except jwt.ExpiredSignatureError:
-            raise AuthenticationFailed('unauthenticated!')
+        #try:
+           # payload = jwt.decode(token, 'secret', algorithm=['HS256'])
+       # except jwt.ExpiredSignatureError:
+           # raise AuthenticationFailed('unauthenticated!')
 
-        user = Medic.objects.filter(id=payload['id']).first()
-        serializer = MedicSerializer(user)
-        return Response(serializer.data)
+      #  user = Medic.objects.filter(id=payload['id']).first()
+      #  serializer = MedicSerializer(user)
+       # return Response(serializer.data)
 
-class MedicList(generics.ListCreateAPIView):
-    """
+#class MedicList(generics.ListCreateAPIView):
+   # """
 
-    """
-    queryset = Medic.objects.all()
-    serializer_class = MedicSerializer
+   # """
+    #queryset = Medic.objects.all()
+    #serializer_class = MedicSerializer
     
    
     # TODO: implement and test authentication to uncomment the next line
@@ -100,15 +110,15 @@ class MedicList(generics.ListCreateAPIView):
        # serializer.save(user=self.request.user)
         
         
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+   # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
     #def post(self, request, *args, **kwargs):
     #    return self.create(request, *args, **kwargs)
 
 
-class MedicDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Medic.objects.all()
-    serializer_class = MedicSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+#class MedicDetail(generics.RetrieveUpdateDestroyAPIView):
+    #queryset = Medic.objects.all()
+    #serializer_class = MedicSerializer
+   # permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
