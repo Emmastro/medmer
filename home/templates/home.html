@@ -1,2 +1,25 @@
-home page<br>
-user: {{user}}
+<!DOCTYPE html>
+<html>
+    {% extends "registration/base.html"%}
+    <head>
+        <title>Medmer</title>
+    </head>
+    <body>
+        {% block content %}
+        <p> Welcome to Medmer</p>
+        <h1> Press this button incase of emergency </h1>
+        <div class="wrapper">
+            <button class="help"> I need Help</button>
+        </div>
+        <section class="info">
+            <p class=info>
+               We are here to get you the help that you need when you need it 
+            </p>
+        </section>
+        <script src="#"></script>
+        {% endblock content %}
+        <footer class="copy">
+            Copyright 2021 Medmer
+        </footer>
+    </body>
+</html>
