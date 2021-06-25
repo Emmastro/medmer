@@ -6,7 +6,14 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <style>
+    * {
+        box-sizing: border-box;
+    }
     body {
         margin: 0;
         background-color: rgb(97, 180 , 235);
@@ -35,16 +42,18 @@
         font-weight: bold;
         color:white;
 }
-/* change thr colot of links on the hover */
+/* change the color of links on the hover */
     .topnav a:hover {
         background-color: lightblue;
         color:navy;
         transition: 0.5s;
+        border-radius: 5px;
     }
 /* Add a color to the active/current link */
     .topnav a.active {
         background-color:navy;
         color: white;
+        border-radius: 5px;
     }
     footer {
         text-align: center;
@@ -59,10 +68,9 @@
     /*paragraph*/
     p {
         font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font-size: 80px;
+        font-size: 90px;
         text-align: center;
         color:whitesmoke;
-        font-weight: bold;
     }
     /* the dropdown container */
     .dropdown {
@@ -164,6 +172,7 @@
         font-size: 45px;
         font-family: inherit;
         padding: 10px 10px;
+        color: ghostwhite;
     }
     .contributors {
         font-size: 15px;
@@ -195,11 +204,19 @@
     p.info {
         font-size: 35px;
         padding: 170px 18px;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        background-color:white;
-        color:black;
-        height: 150px;
-        align-items:center;
+        font-family: Helvetica;
+        background-color:#02a75a;
+        color:white;
+        height: 145px;
+        float:left;
+        padding-top: 10px;
+        animation-name: example;
+        animation-duration:4s;
+        animation-delay: 2s;
+    }
+    @keyframes example {
+        from {background-color: #02a75a;}
+        to {background-color: red;}
     }
     .topnav input[type=text] {
         float: right;
@@ -223,6 +240,7 @@
         transition: 0.5s;
         padding-top: 60px;
         border-radius: 5px;
+        box-shadow: -2px 3px 5px #008bbd;
     }
     .sidebar a {
         padding: 18px 8px 8px 32px;
@@ -231,6 +249,8 @@
         color: white;
         display:block;
         transition: 0.3s;
+        font-size: 20px;
+        padding-left: 10px;
     }
     .sign_out {
         position:absolute;
@@ -238,6 +258,7 @@
         padding-bottom: 10px;
         width:100%;
         padding-left: 10px;
+        font-size: 20px;
     }
     .sidebar a:hover{
         color:inherit;
@@ -248,7 +269,7 @@
         box-shadow: -2px 3px 8px #008bbd;
         border-radius: 5px;
     }
-    .sidebar .closebtn {
+    .sidebar.closebtn {
         position:absolute;
         top: 0;
         right:25px;
@@ -269,16 +290,22 @@
         transition:0.3s;
         height:53px;
         padding: 13px 15px;
+        border-radius: 5px;
     }
     /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-    @media screen and (max-height: 450px) {
+    @media screen and (max-height: 450px)
+     {
         .sidebar {padding-top: 15px;}
         .sidebar a {font-size: 18px;}
+        .column {
+            width: 100%;
+        }
       }
     .topnav_left {
           float: left;
       }
-      h4 {
+      h4, h2 {
           font-size:45px;
+          text-align: center;
       }
 </style>
