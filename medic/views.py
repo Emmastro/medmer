@@ -17,6 +17,7 @@ def register(request):
         if form.is_valid():
 
              form.save()
+             redirect('home')
              
             
     context = {'form': form}
