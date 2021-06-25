@@ -7,10 +7,28 @@
     <title>Login - Medmer</title>
     {% include '../components/css.html' %}
 </head>
-
 <body>
+    <div class="topnav">
+        <div id="sidebar" class="sidebar" style="width: 0px;">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">X</a>
+            <a href="#">Basic Information</a>
+            <a href="#">Insurance Company</a>
+            <a href="#">Next of Kin</a>
+            <a href="#">Register as a Medic</a>
+            <div class="sign_out">
+                <a href="#"> Sign Out</a>
+            </div>
+        </div>
+        <div class="topnav_left">
+            <button class="openbtn" onclick="openNav()"> I am {{user}}</button>
+        </div>
+        <a class="active" href="#">Home</a>
+        <a class="active" href="#">About us</a>
+        <a class="active" href="#">Contact us</a>
+    </div>
     {% block content %}
     {% endblock content %}
+    
 
     <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
