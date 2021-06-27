@@ -5,5 +5,5 @@ from patient import views
 urlpatterns = [
 
 
-path('', views.PatientRegistration, name='Patient_Reg')
+path('', views.PatientRegistration, name='Patient_Reg'),
  ]
