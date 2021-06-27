@@ -17,7 +17,7 @@ def PatientRegistration(request):
         if form.is_valid():
 
              form.save()
-             redirect('home')
+             return redirect('home')
              
             
     context = {'form': form}

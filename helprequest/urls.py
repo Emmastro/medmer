@@ -4,4 +4,5 @@ from helprequest import views
 urlpatterns = [
     path('', views.HelpRequestList.as_view()),
     path('<int:pk>/', views.HelpRequestDetail.as_view(), name='help_request_detail'),
+    path ('Help/', views.gethelp, name='Helpinfo'),
 ]
