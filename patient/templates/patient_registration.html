@@ -1,15 +1,25 @@
-<!doctype html>
-<html lang="en">
-        <div className="base-container" ref={this.props.containerRef}>
-            <div className="header">Do you want to be a Good Samaritan? Register with us</div>
-             <div className="content">
-             
-            <form method="post">
-                {% csrf_token %}
-                {{ form }}
-                <input type="submit" value="Submit">
-            
+<!DOCTYPE html>
+{% extends "registration/base.html"%}
+<head>
+    <html lang="en">
+        <style>
+
+        </style>
+    </head>
+    <body>
+        {% block content %}
+            <div className="base-container" ref={this.props.containerRef}>
+                <h2>Do you want to be a Good Samaritan? Register with us</h2>
+       <div class="container">
+             <div class="form-group">
+                <form method="post" class="form-group col-md-6">
+                    {% csrf_token %}
+                    {{ form.as_table}}
+                <button class="btn btn-success" type="submit">Submit</button>
             </form>
          </div>
         </div>
+    </div>
+    {% endblock content %}
+    </body>
 </html>
