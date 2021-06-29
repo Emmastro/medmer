@@ -3,22 +3,24 @@
 <head>
     <html lang="en">
         <style>
-
         </style>
     </head>
     <body>
         {% block content %}
             <div className="base-container" ref={this.props.containerRef}>
                 <h2>Do you want to be a Good Samaritan? Register with us</h2>
-       <div class="container">
-             <div class="form-group">
-                <form method="post" class="form-group col-md-6">
+            <div class="container">
+                <div class="form-group">
+                 <table>
+                <form method="post" class="mb-3">
                     {% csrf_token %}
-                    {{ form.as_table}}
-                <button class="btn btn-success" type="submit">Submit</button>
+                    {{ form.as_table }}
+                </table>
                 </form>
+                <button class="btn btn-success" type="submit">Submit</button>
              </div>
-             </div>
+        </div>
+    </div>
              {% endblock content %}
-            </body>
-            </html>
+     </body>
+ </html>
