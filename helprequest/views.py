@@ -1,14 +1,16 @@
+from django.forms.models import fields_for_model
 from django.utils.decorators import method_decorator
 
 from django.contrib.auth.decorators import login_required
 
-from django.views.generic import ListView, DetailView, UpdateView, CreateView
+from django.views.generic import ListView, DetailView, UpdateView, CreateView, FormView
+from django.views.generic.base import TemplateView
 
 from helprequest.models import HelpRequest
 
 from helprequest.forms import HelpRequestForm
 
-from django.shortcuts import render, redirect
+
 
 @method_decorator(login_required, name='dispatch')
 class HelpRequestList(ListView):
@@ -31,6 +33,7 @@ class HelpRequestList(ListView):
 		return object_list
     """
 
+
 @method_decorator(login_required, name='dispatch')
 class HelpRequestDetail(DetailView):
 
@@ -38,18 +41,35 @@ class HelpRequestDetail(DetailView):
     template_name = "help_request_detail.html"
     context_object_name = "help_request"
 
-@method_decorator(login_required, name='dispatch')
-def gethelp(request):
-    form_class = HelpRequestForm
-    form  = form_class(request.POST or None)
-    if request.method == 'POST':
-        #form = MedicForm(request.POST, request.FILES)
-        
-        if form.is_valid():
 
-             form.save()
-             return redirect('home')
-             
-            
-    context = {'form': form}
-    return render(request, 'help_request.html', context)
+@method_decorator(login_required, name='dispatch')
+class RequestHelp(FormView):
+    """
+    TODO: on save of the help request, link the user requesting help to the patient fild of the help request
+    """
+    template_name = 'help_request.html'
+    form_class = HelpRequestForm
+    success_url = 'status'
+
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        # form.send_email()
+        return super().form_valid(form)
+
+
+@method_decorator(login_required, name='dispatch')
+class HelpRequestStatus(TemplateView):
+    """
+    TODO: 
+        - should show the status of the help request. The frontend will be refreshing every 5 seconds
+        - next, we can have the backend to send a signal to the frontend when the help request status changes 
+    """
+    template_name = 'help_request_status.html'
+    
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        # form.send_email()
+        return super().form_valid(form)
+

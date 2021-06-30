@@ -5,4 +5,4 @@ from helprequest.models import HelpRequest
 class HelpRequestForm(forms.ModelForm):
     class Meta:
         model = HelpRequest
-        fields = ['patient', 'medic', 'medic_notes', 'patient_notes', 'patient_location']
+        fields = ['patient_notes', 'patient_location']

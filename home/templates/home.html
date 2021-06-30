@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    {% extends "registration/base.html"%}
+    {% extends "base/main.html"%}
     <head>
         <title>Medmer</title>
     </head>
@@ -9,8 +9,10 @@
         <p> Welcome to Medmer</p>
         <h1> Press this button incase of emergency </h1>
         <div class="wrapper">
-            <button class="help"> I need Help</button>
+            <button class="help"><a href={%url 'request_help'%}>I need Help</a></button>
+            <button class="help"><a href={%url 'help_requests'%}>I want to help</a></button>
         </div>
+
         <section>
             <p class=info>
                We are here to get you the help that you need when you need it 
