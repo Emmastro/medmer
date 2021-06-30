@@ -9,19 +9,43 @@
     <body>
         {% block content %}
             <div className="base-container" ref={this.props.containerRef}>
-                <h2 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: beige;">
+                <h2 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: rgb(79, 79, 79);">
                     We want to be there in your hour of need</h2>
-                <h3 style="text-align: center; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: beige;"> 
+                <h3 style="text-align: center; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: rgbrgb(79, 79, 79);"> 
                     Register with us</h3>
             <div class="container">
                 <div class="form-group">
-                 <table>
-                <form method="post" class="uniForm">
+                <form method="post" class="uniForm" style="padding-left: 150px; ">
                     {% csrf_token %}
-                    {{ form|crispy }}
-                </table>
-                <button class="btn btn-success" type="submit" >Submit</button>
+                    <div class="form-row">
+                        <div class="form-group col-md-6 mb-0">
+                            {{ form.first_name|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-6 mb-0">
+                            {{ form.last_name|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-4 mb-0">
+                            {{ form.username|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-4 mb-0">
+                            {{ form.email|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-4 mb-0">
+                            {{ form.country|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-2 mb-0">
+                            {{ form.gender|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-2 mb-0">
+                            {{ form.age|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-2 mb-0">
+                            {{ form.password|as_crispy_field }}
+                        </div>
+                        </div>
+                        <button class="btn btn-success" type="submit" >Submit</button>
                 </form>
+            </div>
              </div>
         </div>
     </div>
