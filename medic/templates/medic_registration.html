@@ -1,17 +1,17 @@
 {% extends 'base/main.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <div class="base-container">
-    <div class="header">Do you want to be a Good Samaritan? Register with us</div>
-        <div class="content">
-        
-    <form method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Submit">
-    
-    </form>
+    <h2>Do you want to be a Good Samaritan? </h2>
+        <h3 style="text-align:center;">Register with us 😀</h3>
+    <div class="container">
+         <form method="post" class="uniForm">
+         {% csrf_token %}
+         {{ form|crispy }}
+         <button class="btn btn-success" type="submit" >Submit</button>
+        </form>
+    </div>
     </div>
 </div>
-
 {%endblock content%}
