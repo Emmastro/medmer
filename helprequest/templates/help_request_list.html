@@ -1,3 +1,6 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
 {%for help_request in help_requests%}
             <form method="post">
                 {% csrf_token %}
@@ -14,3 +17,5 @@
         </div>
     </a>
 {%endfor%}
+
+{%endblock content%}

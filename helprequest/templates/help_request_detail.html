@@ -1,5 +1,9 @@
+{% extends 'base/main.html' %}
 
+{%block content%}
 <p>id: {{help_request.id}}</p>
 <p>patient: {{help_request.patient}}</p>
 <p>medic: {{help_request.medic}}</p>
 <p>time_requested: {{help_request.time_requested}}</p>
+
+{%endblock content%}

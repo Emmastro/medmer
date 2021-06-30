@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 
 
 
-def MedicRegistration(request):
+def medicRegistration(request):
     form_class = MedicForm
     form  = form_class(request.POST or None)
     if request.method == 'POST':

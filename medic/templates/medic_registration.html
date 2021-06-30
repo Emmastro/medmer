@@ -1,15 +1,17 @@
-<!doctype html>
-<html lang="en">
-        <div className="base-container" ref={this.props.containerRef}>
-            <div className="header">Do you want to be a Good Samaritan? Register with us</div>
-             <div className="content">
-             
-            <form method="post">
-                {% csrf_token %}
-                {{ form }}
-                <input type="submit" value="Submit">
-            
-            </form>
-         </div>
-        </div>
-</html>
+{% extends 'base/main.html' %}
+
+{% block content %}
+<div class="base-container">
+    <div class="header">Do you want to be a Good Samaritan? Register with us</div>
+        <div class="content">
+        
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+    
+    </form>
+    </div>
+</div>
+
+{%endblock content%}
