@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% extends "base/main.html"%}
+{% load crispy_forms_tags %}
 <head>
     <html lang="en">
         <style>
@@ -8,16 +9,19 @@
     <body>
         {% block content %}
             <div className="base-container" ref={this.props.containerRef}>
-                <h2>Do you want to be a Good Samaritan? Register with us</h2>
+                <h2 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: beige;">
+                    We want to be there in your hour of need</h2>
+                <h3 style="text-align: center; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: beige;"> 
+                    Register with us</h3>
             <div class="container">
                 <div class="form-group">
                  <table>
-                <form method="post" class="mb-3">
+                <form method="post" class="uniForm">
                     {% csrf_token %}
-                    {{ form.as_table }}
+                    {{ form|crispy }}
                 </table>
+                <button class="btn btn-success" type="submit" >Submit</button>
                 </form>
-                <button class="btn btn-success" type="submit">Submit</button>
              </div>
         </div>
     </div>
