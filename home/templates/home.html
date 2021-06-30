@@ -6,15 +6,16 @@
     </head>
     <body>
         {% block content %}
-        <p> Welcome to Medmer</p>
-        <h1> Press this button incase of emergency </h1>
+        <p style="font-size: 55px; text-align: center; font-weight: bold; color: rgb(1, 43, 53);">
+             Welcome to Medmer</p>
+        <h1 style="color: rgb(1, 43, 53);" > Press this button incase of emergency </h1>
         <div class="wrapper">
             <button class="help"><a href={%url 'request_help'%}>I need Help</a></button>
             <button class="help"><a href={%url 'help_requests'%}>I want to help</a></button>
         </div>
 
         <section>
-            <p class=info>
+            <p class=info style="font-weight: bolder; font-size:35px; text-align:center;">
                We are here to get you the help that you need when you need it 
             </p>
         </section>
