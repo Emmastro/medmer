@@ -6,8 +6,4 @@ class Patient(User):
 
     age = models.IntegerField()
     country = models.CharField(max_length=50)
-    GENDER_CHOICES = (
-        ('FEMALE', 'Female'),
-        ('MALE', 'Male'),
-    )
-    gender = models.CharField(max_length=30, choices=GENDER_CHOICES)
+    gender = models.CharField(max_length=30, choices=[('Male','male'),('Female','female')])
