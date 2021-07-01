@@ -25,9 +25,12 @@
         <div class="topnav_left">
             <button class="openbtn" onclick="openNav()">{{user}}</button>
         </div>
-        <a class="active" href={%url 'home'%}>Home</a>
-        <a  href="#">About us</a>
-        <a  href="#">Contact us</a>
+        <label class="logo">Medmer</label>
+        <ul>
+            <li><a class="active" href={%url 'home'%}>Home</a></li>
+            <li><a  href="#">About us</a></li>
+            <li><a  href="#">Contact us</a></li>
+        </ul>
     </div>
     {% block content %}
     {% endblock content %}
