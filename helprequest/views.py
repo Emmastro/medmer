@@ -53,12 +53,15 @@ class RequestHelp(FormView):
     form_class = HelpRequestForm
     success_url = 'status'
     def gethelp(request):
+        form = form_class(request.POST or None)
         if request.method == 'POST':
              if form.is_valid():
 
                 form.save()
                 User = HelpRequest.patient
                 return redirect('help_request_status.html')
+        context = {'form': form}
+        return render(request, 'help_request.html', context)
           
 
     def form_valid(self, form):
@@ -97,6 +100,7 @@ def gethelp(request):
                 form.save()
                 User = HelpRequest.medic
                 return redirect('home')
+        
 
 def form_valid(self, form):
         # This method is called when valid form data has been POSTed.
