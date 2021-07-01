@@ -6,4 +6,6 @@ urlpatterns = [
     path('<int:pk>/', views.HelpRequestDetail.as_view(), name='help_request_detail'),
     path ('requesthelp/', views.RequestHelp.as_view(), name='request_help'),
     path ('requesthelp/status', views.HelpRequestStatus.as_view(), name='request_help_status'),
+    path ('requesthelp/response', views.HelpResponse.as_view(), name='help_response'),
 ]
+

@@ -8,7 +8,7 @@ from django.views.generic.base import TemplateView
 
 from helprequest.models import HelpRequest
 
-from helprequest.forms import HelpRequestForm
+from helprequest.forms import HelpRequestForm, HelpResponseForm
 
 
 
@@ -47,9 +47,19 @@ class RequestHelp(FormView):
     """
     TODO: on save of the help request, link the user requesting help to the patient fild of the help request
     """
+
+
     template_name = 'help_request.html'
     form_class = HelpRequestForm
     success_url = 'status'
+    def gethelp(request):
+        if request.method == 'POST':
+             if form.is_valid():
+
+                form.save()
+                User = HelpRequest.patient
+                return redirect('help_request_status.html')
+          
 
     def form_valid(self, form):
         # This method is called when valid form data has been POSTed.
@@ -73,3 +83,23 @@ class HelpRequestStatus(TemplateView):
         # form.send_email()
         return super().form_valid(form)
 
+
+@method_decorator(login_required, name='dispatch')
+class HelpResponse(FormView):
+    template_name = 'help_response.html'
+    form_class = HelpResponseForm
+    print(form_class)
+    success_url = 'success'
+def gethelp(request):
+        if request.method == 'POST':
+             if form.is_valid():
+
+                form.save()
+                User = HelpRequest.medic
+                return redirect('home')
+
+def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        # form.send_email()
+    return super().form_valid(form)    
