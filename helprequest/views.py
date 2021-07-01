@@ -93,13 +93,13 @@ class HelpResponse(FormView):
     form_class = HelpResponseForm
     print(form_class)
     success_url = 'success'
-def gethelp(request):
-        if request.method == 'POST':
-             if form.is_valid():
+def givehelp(request):
+    if request.method == 'POST':
+        if form.is_valid():
 
-                form.save()
-                User = HelpRequest.medic
-                return redirect('home')
+            form.save()
+            User = HelpRequest.medic
+            return redirect('home')
         
 
 def form_valid(self, form):
