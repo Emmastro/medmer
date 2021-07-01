@@ -6,11 +6,37 @@
     <h2>Do you want to be a Good Samaritan? </h2>
         <h3 style="text-align:center;">Register with us 😀</h3>
     <div class="container">
-         <form method="post" class="uniForm">
-         {% csrf_token %}
-         {{ form|crispy }}
+        <form method="post" class="uniForm">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-md-6 mb-0">
+                {{ form.first_name|as_crispy_field  }}
+                </div>
+                <div class="form-group col-md-6 mb-0">
+                    {{ form.last_name|as_crispy_field  }}
+                </div>
+                <div class="form-group col-md-4 mb-0">
+                    {{ form.email|as_crispy_field  }}
+                </div>
+                <div class="form-group col-md-4 mb-0">
+                    {{ form.username|as_crispy_field  }}
+                </div>
+                <div class="form-group col-md-4 mb-0">
+                    {{ form.medic_id|as_crispy_field  }}
+                </div>
+                <div class="form-group col-md-6 mb-0">
+                    {{ form.speciality|as_crispy_field  }}
+                </div>
+                <div class="form-group col-md-2 mb-0">
+                    {{ form.country|as_crispy_field  }}
+                </div>
+                <div class="form-group col-md-2 mb-0">
+                    {{ form.password|as_crispy_field  }}
+                </div>
+                </div>
          <button class="btn btn-success" type="submit" >Submit</button>
         </form>
+        </div>
     </div>
     </div>
 </div>
