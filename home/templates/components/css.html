@@ -1,4 +1,3 @@
-{% load static %}
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -11,331 +10,76 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <style>
-    * {
-        box-sizing: border-box;
-        margin:0;
-        text-decoration: none;
-        list-style:none;
-    }
-    body {
-        font-family:Verdana, Geneva, Tahoma, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  * {
         margin: 0;
-        background-color: rgb(232, 236, 238);
-        scroll-behavior: smooth;
+        padding: 0;
     }
-    /* add background color to the top navigation bar */
-    .topnav {
-        background-color: rgb(0, 182, 182);
-        width: 100%;
-        overflow: hidden;
-        transition: top 0.3s;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        padding:13px 10px;
-        box-shadow: -2px 2px 4px grey;
-    }
-    label.logo {
-        color:white;
-        font-size: 25px;
-        text-transform: uppercase;
-        float: right;
-        padding: 10px 20px;
-    }
-    nav ul {
-        float:right;
-        margin-right: 10px;
-    }
-    /*Style the links inside the navigation bar */
-    .topnav a {
-        float: left;
-        color:antiquewhite;
-        text-align:center;
-        padding:14px 16px;
-        text-decoration: none;
-        font-size: 17px;
-    }
-    .welcome {
-        background-color: rgb(97, 180, 235);
-        height: px;
-        font-weight: bold;
-        color:white;
-}
-/* change the color of links on the hover */
-    .topnav a:hover {
-        background-color: rgb(2, 118, 118);
-        color:white;
-        transition: 0.5s;
-        border-radius: 5px;
-        padding-right: 10px;
-
-    }
-/* Add a color to the active/current link */
-    .topnav a.active {
-        background-color:rgb(2, 118, 118);
-        color: white;
-        border-radius: 5px;
-    }
-    footer {
-        text-align: center;
-        color:navy;
-        background-color:rgb(0, 182, 182);
-        padding:100px;
-    }
-    /*paragraph*/
-    p {
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font-size: 9px;
-        color:black;
-        margin: 0;
-    }
-    /* the dropdown container */
-    .dropdown {
-        float: left;
-        overflow: hidden;
-        align-items: left;
-    }
-    /* Dropdown button */
-    .dropdown .dropbtn {
-        font-size: 17px;
-        border: none;
-        outline: none;
-        color:white;
-        padding: 14px 16px;
-        background-color: inherit;
-        font-family: inherit;
-        margin: 0;
-    }
-    /* change color when hovering the links*/
-    .dropdown:hover .dropbtn {
-        background-color:navy;
-    }
-    /* drop down cintent to be hidden by default*/
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color:rgb(26, 158, 247);
-        min-width: 160px;
-        z-index: 1;
-    }
-    /*links inside the drop down content*/
-    .dropdown-content a {
-        float: none;
-        color: navy;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-        text-align: left;
-    }
-    /* Show the dropdown menu on hover */
-    .dropdown:hover .dropdown-content {
-        display: block;
-        box-shadow: -2px 3px 8px #008bbd;
-    }
-    ul{
-        text-align: left;
-        display: flex;
-        flex-wrap: wrap;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-    }
-    .intro {
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        text-align: center;
-        color:white;
-        font-size: 50px;
-    }
-    .copy {
-        align-items: center;
-        padding: 3px;
-        background-color:rgb(97, 180, 235);
-        color:navy;
-        padding-left: 500px;
-    }
-    section {
-        background-color: antiquewhite;
-    }
-    .panel_2 {
-        font-size: 30px;
-        color:navy;
-    
-    }
-    .accordion {
-        background-color:rgb(97, 180, 235);
-        color:white;
-        cursor: pointer;
-        padding:18px;
-        width:50%;
-        text-align: left;
-        border: none;
-        outline: none;
-        transition: 0.3s;
-    }
-    .active, .accordion:hover {
-        background-color: navy;
-
-    }
-    /*Style the accordion panel. Note: hidden by default*/
-    .panel {
-        padding: 0 18px;
-        background-color: antiquewhite;
-        display: none;
-        overflow: hidden;
-    }
-    button {
-        font-size: 25px;
-    }
-    h1 {
-        text-align: center;
-        font-size: 45px;
-        font-family: inherit;
-        padding: 10px 10px;
-        color: ghostwhite;
-    }
-    .contributors {
-        font-size: 15px;
-        background-color:rgb(97, 180, 235);
-        text-align: center;
-    }
-    section.help_centre {
-        background-color:inherit;
-        padding-bottom: 10px;
-    }
-    .wrapper {
-        text-align: center;
-        padding:15px 10px;
-    }
-    button.help {
-        background-color:rgb(133, 3, 3);
-        border-radius: 5px;
-        overflow: hidden;
-        border: none;
-        font-size: 45px;
-        color: white;
+/* navigation bar */ 
+    nav a {
+        font-size: 18px;
         display: inline-flex;
-        padding: 10px 10px;
-    }  
-    button.help:hover{
-        background-color:rgb(146, 5, 5);
-        box-shadow: -2px 3px 8px #008bbd;
-        color: blanchedalmond;
-    }
-    p.info {
-        font-size: 35px;
-        padding: 170px 18px;
-        font-family: Helvetica;
-        background-color:#02a75a;
-        color:white;
-        height: 145px;
-        float:left;
-        padding-top: 10px;
-        animation-name: example;
-        animation-duration:4s;
-        animation-delay: 2s;
-        width:100%;
-    }
-    @keyframes example {
-        from {background-color: #02a75a;}
-        to {background-color: red;}
-    }
-    .topnav input[type=text] {
-        float: right;
-        padding: 6px;
-        border: none;
-        margin-top: 8px;
-        margin-right: 16px;
-        font-size: inherit;
-        border-radius: 5px;
-        overflow: hidden;
-        display: inherit;
-    }
-    .sidebar {
-        height:75%;
-        width:45%;
-        position:fixed;
-        top:0;
-        left: 0;
-        background-color: rgb(2, 118, 118);
-        overflow-x: hidden;
-        transition: 0.5s;
-        padding-top: 60px;
-        border-radius: 5px;
-        box-shadow: -2px 3px 5px #13b5f0;
-    }
-    .sidebar a {
-        padding: 18px 8px 8px 32px;
+        margin: 15px;
+        padding:15px;
+        font-weight:bold;
         text-decoration: none;
-        font-size: inherit;
-        color: white;
-        display:block;
-        transition: 0.3s;
-        font-size: 20px;
-        padding-left: 10px;
     }
-    .sign_out {
-        position:absolute;
-        bottom:10px;
-        padding-bottom: 10px;
-        width:100%;
-        padding-left: 10px;
-        font-size: 20px;
+    .dropdown-menu{
+        background-color:rgb(72, 197, 235);
     }
-    .sidebar a:hover{
-        color:inherit;
-        transition: 0.5s;
-        padding: 18px 10px;
-        width:92%;
-        font-weight: bold;
-        box-shadow: -2px 3px 8px #008bbd;
-        border-radius: 5px;
+   a.dropdown-item{
+       color:whitesmoke;
+       background-color: rgb(72, 197, 235);
+       width:85%;
+   }
+   a.dropdown-item:hover{
+    transition: 0.3s;  
+    color: rgb(72, 197, 235);
+    padding:15px;
     }
-    .sidebar.closebtn {
-        position:absolute;
-        top: 0;
-        right:25px;
-        font-size: inherit;
-        margin-left:50px;
-        width: 100%;
+    a.nav-link:hover {
+        transition: 0.3s;  
+        background-color: rgb(0, 154, 201);
+        padding:15px;
     }
-    .openbtn {
-        font-size:18px;
-        cursor:pointer;
-        background-color:rgb(0, 182, 182);
-        color: white;
-        padding: 13px 15px;
-        border: none;   
+  footer {
+      background-color: rgb(0, 112, 146);
+      color:white;
+      text-align: center;
+  }
+  .wrapper {
+      margin-right: auto;
+      margin-left: auto;
+      padding-top: 25px;
+      max-width: 960px;
+      padding-right: 10px;
+      padding-left: 325px;
+      color:white;
+  } 
+  .wrapper_2 {
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 25px;
+    max-width: 960px;
+    padding-right: 10px;
+    padding-left: 325px;
+    color:white;
+  }
+  .square {
+  height: 100px;
+  width: 250px;
+  background-color: #fff;
+  border:solid rgb(0, 154, 201);
+  border-radius:5px;
+}
+    .square_1 {
+    height: 100px;
+    width: 250px;
+    background-color: #fff;
+    border:solid rgb(0, 154, 201);
+    border-radius:5px;
     }
-    .openbtn:hover{
-        transition:0.3s;
-        height:53px;
-        padding: 13px 15px;
-        border-radius: 5px;
+    a {
+        color:white;
     }
-    /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-    @media screen and (max-height: 450px)
-     {
-        .sidebar {padding-top: 15px;}
-        .sidebar a {font-size: 18px;}
-        .column {
-            width: 100%;
-        }
-      }
-    .topnav_left {
-          float: left;
-      }
-      h4, h2 {
-          font-size: 35px;
-          text-align: center;
-      }
-      a {
-          color: blanchedalmond;
-      }
-      a:hover{
-          color:rgb(252, 203, 128);
-      }
-      form {
-        border: 0.5rem inset rgb(82, 132, 240);
-        padding: 5rem;
-        padding-right: 5rem;
-        border-radius: 10px;
 
-      }
-      
 </style>
