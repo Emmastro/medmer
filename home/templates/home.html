@@ -11,16 +11,16 @@
         <h1 style="color: rgb(1, 43, 53); text-align: center;" > Press this button incase of emergency </h1>
         <div class="wrapper">
             <div class="square">
-                <button class="btn btn-primary btn-lg" 
+                <a href={%url 'request_help'%}><button class="btn btn-primary btn-lg" 
                 style="padding:15px 15px; background-color: red; margin-left: 75px;
                 margin-top:18px; border: solid transparent;" >
-                    <a href={%url 'request_help'%}>I need Help</a></button>
+                    I need Help</button></a>
             </div>
             </div>
         <div class="wrapper_2">
             <div class="square_1">
-                <button class="btn btn-primary btn-lg" style="padding:15px 15px; background-color: rgb(0, 154, 201); margin-left: 75px;
-                margin-top:18px; border: solid transparent;" ><a href={%url 'help_requests'%}>I want to help</a></button>
+                <a href={%url 'help_requests'%}><button class="btn btn-primary btn-lg" style="padding:15px 15px; background-color: rgb(0, 154, 201); margin-left: 75px;
+                margin-top:18px; border: solid transparent;" >I want to help</button></a>
             </div>
         </div>
         <section>
