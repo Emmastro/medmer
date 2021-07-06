@@ -7,7 +7,7 @@ from crispy_forms.layout import Submit, Layout
 
 class HelpRequestForm(forms.ModelForm):
     patient_notes = forms.TextInput()
-    patient_location = forms.Textarea()
+    patient_location = forms.TextInput()
     
     class Meta:
         model = HelpRequest
