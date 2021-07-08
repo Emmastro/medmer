@@ -91,11 +91,11 @@ class HelpRequestStatus(TemplateView):
 class HelpRequestUpdate(UpdateView):
     model = HelpRequest
     fields = [
-        "slug"
-        "medic notes"
+        # "slug"
+        "medic_notes"
     ]
     template_name = 'help_response.html'
-    success_url = 'home'
+    success_url = '/'
         
 
 def form_valid(self, form):
