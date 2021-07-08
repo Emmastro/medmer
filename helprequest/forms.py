@@ -11,7 +11,11 @@ class HelpRequestForm(forms.ModelForm):
         exclude = ['medic-notes ']
 
 class HelpResponseForm(forms.ModelForm):
+    """
+    form for medic when they accept and attend to a patient
+    """
+
     class Meta:
         model = HelpRequest
-        fields = ['patient', 'medic_notes']
+        fields = ['medic_notes']
         

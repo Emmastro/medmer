@@ -52,7 +52,18 @@ class RequestHelp(FormView):
     template_name = 'help_request.html'
     form_class = HelpRequestForm
     success_url = 'status'
-   
+    def gethelp(request):
+        form = form_class(request.POST or None)
+        if request.method == 'POST':
+             if form.is_valid():
+
+                form.save()
+                User = HelpRequest.patient
+                return redirect('help_request_status.html')
+        context = {'form': form}
+        return render(request, 'help_request.html', context)
+          
+
     def form_valid(self, form):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
@@ -77,12 +88,15 @@ class HelpRequestStatus(TemplateView):
 
 
 @method_decorator(login_required, name='dispatch')
-class HelpResponse(FormView):
+class HelpRequestUpdate(UpdateView):
+    model = HelpRequest
+    fields = [
+        "slug"
+        "medic notes"
+    ]
     template_name = 'help_response.html'
-    form_class = HelpResponseForm
-    print(form_class)
-    success_url = 'success'
-
+    success_url = 'home'
+        
 
 def form_valid(self, form):
         # This method is called when valid form data has been POSTed.
