@@ -16,21 +16,21 @@ from helprequest.forms import HelpRequestForm, HelpResponseForm
 class HelpRequestList(ListView):
 
     model = HelpRequest
-        template_name = "help_request_list.html"
-        context_object_name = "help_requests"
-        paginate_by = 20
-        order_by="category"
+    template_name = "help_request_list.html"
+    context_object_name = "help_requests"
+    paginate_by = 20
+    order_by="category"
 
+    """
+     def get_queryset(self):
 
-        """def get_queryset(self):
+            key = self.request.GET.get('key', None)
+             if  key!= None:
+                    object_list = self.model.objects.filter(name__icontains = key)
+             else:
+                     object_list = self.model.objects.order_by(self.order_by)
 
-                key = self.request.GET.get('key', None)
-                if  key!= None:
-                        object_list = self.model.objects.filter(name__icontains = key)
-                else:
-                        object_list = self.model.objects.order_by(self.order_by)
-
-                return object_list
+             return object_list
     """
 
 
