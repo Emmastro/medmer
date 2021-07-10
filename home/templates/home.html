@@ -1,35 +1,29 @@
-<!DOCTYPE html>
-<html>
-    {% extends "base/main.html"%}
-     <head>
-        <title>Medmer</title>
-    </head>
-    <body>
-        {% block content %}
-        <p style="font-size: 55px; text-align: center; font-weight: bold; color: rgb(1, 43, 53);">
-             Welcome to Medmer</p>
-        <h1 style="color: rgb(1, 43, 53); text-align: center;" > Press this button incase of emergency </h1>
-        <div class="wrapper">
-            <div class="square">
-                <a href={%url 'request_help'%}><button class="btn btn-primary btn-lg" 
-                style="padding:15px 15px; background-color: red; margin-left: 75px;
-                margin-top:18px; border: solid transparent;" >
-                    I need Help</button></a>
-            </div>
+{% extends "base/main.html"%}
+{% load static %}
 
-            </div>
-        <div class="wrapper_2">
-            <div class="square_1">
-                <a href={%url 'help_requests'%}><button class="btn btn-primary btn-lg" style="padding:15px 15px; background-color: rgb(0, 154, 201); margin-left: 75px;
-                margin-top:18px; border: solid transparent;" >I want to help</button></a>
-            </div>
-        </div>
-        <section>
-            <p class=info style="font-weight: bolder; font-size:35px; text-align:center;">
-               We are here to get you the help that you need when you need it ?
-            </p>
-        </section>
-        <script src="#"></script>
-        {% endblock content %}
-    </body>
-</html>
+{% block content %}
+<p style="font-size: 55px; text-align: center; font-weight: bold; color: rgb(1, 43, 53);">
+        Welcome to Medmer</p>
+<h1 style="color: rgb(1, 43, 53); text-align: center;" > Press this button incase of emergency </h1>
+<div class="wrapper">
+    <div class="square">
+        <a href={%url 'request_help'%}><button class="btn btn-primary btn-lg" 
+        style="padding:15px 15px; background-color: red; margin-left: 75px;
+        margin-top:18px; border: solid transparent;" >
+            I need Help</button></a>
+    </div>
+
+    </div>
+<div class="wrapper_2">
+    <div class="square_1">
+        <a href={%url 'help_requests'%}><button class="btn btn-primary btn-lg" style="padding:15px 15px; background-color: rgb(0, 154, 201); margin-left: 75px;
+        margin-top:18px; border: solid transparent;" >I want to help</button></a>
+    </div>
+</div>
+<section>
+    <img src={%static 'med.jpeg'%} style="width:200px; height: 200px;"></img>
+    <p class=info style="font-weight: bolder; font-size:35px; text-align:center;">
+        We are here to get you the help that you need when you need it ?
+    </p>
+</section>
+{% endblock content %}
