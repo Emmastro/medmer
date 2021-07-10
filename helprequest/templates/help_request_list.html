@@ -2,11 +2,6 @@
 
 {% block content %}
 {%for help_request in help_requests%}
-            <form method="post">
-                {% csrf_token %}
-                {{ form }}
-                <input type="submit" value="Submit">
-                </form>
 
     <a href="{%url 'help_request_detail' pk=help_request.id%}">
         <div>

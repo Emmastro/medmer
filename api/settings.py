@@ -1,5 +1,6 @@
 from pathlib import Path
 import environ
+import os
 
 env = environ.Env()
 environ.Env.read_env() 
@@ -107,6 +108,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 #AUTH_USER_MODEL = 'users.User'
 
 #Allow frontend ports to access our apps
