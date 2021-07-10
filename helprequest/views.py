@@ -15,22 +15,22 @@ from helprequest.forms import HelpRequestForm, HelpResponseForm
 @method_decorator(login_required, name='dispatch')
 class HelpRequestList(ListView):
 
-	model = HelpRequest
-	template_name = "help_request_list.html"
-	context_object_name = "help_requests"
-	paginate_by = 20
-	order_by="category"
-	
-	
-	"""def get_queryset(self):
-		
-		key = self.request.GET.get('key', None)
-		if  key!= None:
-			object_list = self.model.objects.filter(name__icontains = key)
-		else:
-			object_list = self.model.objects.order_by(self.order_by)
-		
-		return object_list
+    model = HelpRequest
+        template_name = "help_request_list.html"
+        context_object_name = "help_requests"
+        paginate_by = 20
+        order_by="category"
+
+
+        """def get_queryset(self):
+
+                key = self.request.GET.get('key', None)
+                if  key!= None:
+                        object_list = self.model.objects.filter(name__icontains = key)
+                else:
+                        object_list = self.model.objects.order_by(self.order_by)
+
+                return object_list
     """
 
 
@@ -52,18 +52,7 @@ class RequestHelp(FormView):
     template_name = 'help_request.html'
     form_class = HelpRequestForm
     success_url = 'status'
-    def gethelp(request):
-        form = form_class(request.POST or None)
-        if request.method == 'POST':
-             if form.is_valid():
-
-                form.save()
-                User = HelpRequest.patient
-                return redirect('help_request_status.html')
-        context = {'form': form}
-        return render(request, 'help_request.html', context)
-          
-
+   
     def form_valid(self, form):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
@@ -79,7 +68,7 @@ class HelpRequestStatus(TemplateView):
         - next, we can have the backend to send a signal to the frontend when the help request status changes 
     """
     template_name = 'help_request_status.html'
-    
+
     def form_valid(self, form):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
@@ -91,15 +80,15 @@ class HelpRequestStatus(TemplateView):
 class HelpRequestUpdate(UpdateView):
     model = HelpRequest
     fields = [
-        # "slug"
-        "medic_notes"
-    ]
+            # "slug"
+            "medic_notes"
+            ]
     template_name = 'help_response.html'
     success_url = '/'
-        
+
 
 def form_valid(self, form):
-        # This method is called when valid form data has been POSTed.
+    # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
         # form.send_email()
     return super().form_valid(form)    
