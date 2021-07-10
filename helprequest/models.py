@@ -1,5 +1,4 @@
 from django.db import models
-from autoslug import AutoSlugField
 
 class HelpRequest(models.Model):
     """ """
@@ -7,7 +6,7 @@ class HelpRequest(models.Model):
 
     # TODO: medic should be able to perform help requests too
     patient = models.ForeignKey('patient.Patient', on_delete=models.CASCADE)
-    slug = AutoSlugField(unique_with='id', populate_from='patient')
+    
     medic = models.ForeignKey('medic.Medic', on_delete=models.CASCADE, blank=True, null=True)
     medic_notes = models.TextField(blank=True, null=True)
     
