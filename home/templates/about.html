@@ -1,64 +1,86 @@
 {% extends "base/main.html"%}
 {% load static %}
 {% block content %}
-<div class="about_section">
-        <h1>About us</h1>
-        <p>
+<style>
+    p{
+        font-size:15px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    img{
+    margin-left: 200px;
+    padding: 0 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+ }
+
+</style>
+<html>
+    <div class="about_section">
+        <h1 style="text-align: center; font-size:45px;">About us</h1>
+        <p style="text-align: center; font-size: 30px;" >
             Medmer is focused on getting you emergency response whenever and wherever you are
             It is very simple and easy to use, offering you a much needed help in times you need.
         </p>
-        <h2> Steps for getting help </h2>
+        <h2 style="color: blue;"> Steps for getting help </h2>
         <div class="row">
+            <div class="container">
             <div class="column">
                 <div class="card">
-                    <img src="{% static }"/>
                     <h2> Press the Help Button</h2>
-                    <p>
+                    <img src={%static 'button.png' %} style = "width: 80px;" alt="help button"/>
+                    <p >
                         The red button on the home page is your emergency response
                         button, in light of any medical situation use it.
                     </p>
                 </div>
+                </div>
             </div>
         </div>
         <div class="row">
+            <div class="container">
             <div class="column">
                 <div class="card">
-                    <img src="{% static }"/>
                     <h2> Indicate your Details</h2>
+                    <img src={%static 'contract.png' %} style="width:80px;"/>
                     <p>
                         A form will appear and you will to indicate where you 
                         current location is and the kind of medical emergency that you 
                         need, afterwards click on the submit button.                        
                     </p>
                 </div>
+                </div>
             </div>
         </div>
         <div class="row">
+            <div class="container">
             <div class="column">
                 <div class="card">
-                    <img src="{% static }"/>
-                    <h2> Stay Put</h2>
-                    <p>
+                    <h2> Wait for as Help arrives </h2>
+                    <img src={%static 'chronometer.png' %} style="width :80px;" />
+                    <p >
                         A medic will be assigned to you based on your current location, and therefore ensure that 
                         you do not change location. If you are with someone who is your emergency contact 
                         we highly suggest that they offer the support needed before the medic arrives.
                     </p>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="column">
-                <div class="card">
-                    <img src="{% static }"/>
-                    <h2> Receive the treatement </h2>
-                    <p>
-                        Once the medic arrives you will receive the first aid treatement you 
-                        deserve m and if need be, you shall be transported to the nearest health facility.
-                    </p>
                 </div>
             </div>
         </div>
-
-
+        <div class="row">
+            <div class="container">
+            <div class="column">
+                <div class="card">
+                        <h2> Receive the treatement </h2>
+                         <img src={%static 'first-aid-kit.png' %} style = "width:80px;"/>
+                         <p style="text-align: center;">
+                             Once the medic arrives you will receive the first aid treatement you 
+                             deserve m and if need be, you shall be transported to the nearest health facility.
+                        </p>
+                </div>
+                </div>
+            </div>
+        </div>
     </div>
+ </html>
 {% endblock content %}
