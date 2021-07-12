@@ -5,5 +5,5 @@ from medic import views
 urlpatterns = [
 
 
-path('', views.medic_registration, name='medic_registration')
+path('', views.MedicRegistration.as_view(), name='medic_registration')
  ]
