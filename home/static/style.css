@@ -163,6 +163,13 @@ h3 {
     color: rgb(41, 137, 228);
     text-shadow: 0 4px 8px rgba(0, 0 , 0 , 0.2);
   }
+  img{
+    margin: auto;
+    padding: 0 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+ }
+
   
 
   @media screen and (max-width: 650px) {
