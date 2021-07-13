@@ -54,10 +54,15 @@
     background: #fff;
     transform: skewY(-10deg);
     }
+    .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+ }
 </style>
 <html>
     <body>
-        <section >
             <div class="banner">
             <h1 > We all need Help </h1>
             <img src={%static 'dove.jpg'%}  alt="">
@@ -66,11 +71,11 @@
                 Getting you the <em>Help</em> you need
             </p>
         </div>
-        </div>
-        </section>
-        <div class="card">
-            <a href={%url 'login'%}>Log back in</a>
+            <div class="card">
+                <a href={%url 'login'%}>Log back in</a>
+            </div>
         </div>
     </body>
 </html>
+
 {% endblock content %}
