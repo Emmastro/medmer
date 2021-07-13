@@ -1,25 +1,21 @@
-from patient.models import Patient
-from rest_framework.reverse import reverse
-import jwt, datetime
-from django.contrib.auth.hashers import check_password
+from django.contrib.auth import authenticate, login
 from django.views.generic.edit import FormView
-from patient.forms import PatientForm
-from django.shortcuts import render, redirect
+from patient.forms import PatientRegistrationForm
+from django.shortcuts import redirect
 
 
+class PatientRegistration(FormView):
 
-def patient_registration(request):
-    form_class = PatientForm
-    form  = form_class(request.POST or None)
-    if request.method == 'POST':
-        #form = PaitehtForm(request.POST, request.FILES)
+    template_name = 'patient_registration.html'
+    form_class = PatientRegistrationForm
+    success_url='/'
         
-        if form.is_valid():
+    def form_valid(self, form):
 
-             form.save()
-             return redirect('home')
-             
-            
-    context = {'form': form}
-    return render(request, 'patient_registration.html', context)
-    
+        form.save()
+        username = self.request.POST['username']
+        password = self.request.POST['password1']
+        user = authenticate(username=username, password=password)
+        login(self.request, user)
+
+        return redirect(self.success_url)

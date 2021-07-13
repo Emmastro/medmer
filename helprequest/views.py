@@ -21,18 +21,6 @@ class HelpRequestList(ListView):
     paginate_by = 20
     order_by="category"
 
-    """
-     def get_queryset(self):
-
-            key = self.request.GET.get('key', None)
-             if  key!= None:
-                    object_list = self.model.objects.filter(name__icontains = key)
-             else:
-                     object_list = self.model.objects.order_by(self.order_by)
-
-             return object_list
-    """
-
 
 @method_decorator(login_required, name='dispatch')
 class HelpRequestDetail(DetailView):
@@ -69,12 +57,6 @@ class HelpRequestStatus(TemplateView):
     """
     template_name = 'help_request_status.html'
 
-    def form_valid(self, form):
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
-        # form.send_email()
-        return super().form_valid(form)
-
 
 @method_decorator(login_required, name='dispatch')
 class HelpRequestUpdate(UpdateView):
@@ -84,11 +66,4 @@ class HelpRequestUpdate(UpdateView):
             "medic_notes"
             ]
     template_name = 'help_response.html'
-    success_url = '/'
-
-
-def form_valid(self, form):
-    # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
-        # form.send_email()
-    return super().form_valid(form)    
+    success_url = '/' 

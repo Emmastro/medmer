@@ -7,15 +7,7 @@ from django.contrib.auth.models import User
 
 
 
-class PatientForm(forms.ModelForm):
-    username = forms.CharField()
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-    email = forms.EmailField(label= 'Email')
-    country = forms.CharField()
-    gender = forms.ChoiceField(choices=[('Male', 'male'), ('Female', 'female')])
-    age = forms.IntegerField(max_value=100)
-    
+class PatientRegistrationForm(forms.ModelForm):   
     
     class Meta:
        model = Patient

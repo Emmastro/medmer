@@ -1,24 +1,20 @@
-from medic.models import Medic
-from rest_framework.reverse import reverse
-import jwt, datetime
-from django.contrib.auth.hashers import check_password
-from django.views.generic.edit import FormView
-from medic.forms import MedicForm
-from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from medic.forms import MedicRegistrationForm
+from django.shortcuts import redirect
+from django.views.generic import FormView
 
+class MedicRegistration(FormView):
 
+    template_name = 'medic_registration.html'
+    form_class = MedicRegistrationForm
+    success_url='/'
+    
+    def form_valid(self, form):
 
-def medic_registration(request):
-    form_class = MedicForm
-    form  = form_class(request.POST or None)
-    if request.method == 'POST':
-        #form = MedicForm(request.POST, request.FILES)
-        
-        if form.is_valid():
+        form.save()
+        username = self.request.POST['username']
+        password = self.request.POST['password1']
+        user = authenticate(username=username, password=password)
+        login(self.request, user)
 
-             form.save()
-             return redirect('home')
-             
-            
-    context = {'form': form}
-    return render(request, 'medic_registration.html', context)
+        return redirect(self.success_url)

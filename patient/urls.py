@@ -5,5 +5,5 @@ from patient import views
 urlpatterns = [
 
 
-path('', views.patient_registration, name='patient_registration'),
+path('', views.PatientRegistration.as_view(), name='patient_registration'),
  ]
