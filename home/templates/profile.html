@@ -1,5 +1,20 @@
 {% extends "base/main.html"%}
-
+{% load static %}
 {% block content %}
-    Profile details
+<html>
+    <h2> {{ user }}'s Profile </h2>
+    <div class="container-fluid" style="padding-bottom: 800px;">
+        <div class="card" style="max-width: 300px; margin: auto; text-align: center; ">
+            <img src={%static 'user.png'%} style=" width:100px; margin-left: 100px; padding-top: 30px;"alt="" class="">
+            <h1 class=""> {{ user }}</h1>
+            <p class = "title" style="color:blue; font-size:18px;"> p</p>
+            <p> Country : </p>
+            <a href="#"><i class="fa fa-dribbble"></i></a>
+  <a href="#"><i class="fa fa-twitter"></i></a>
+  <a href="#"><i class="fa fa-linkedin"></i></a>
+  <a href="#"><i class="fa fa-facebook"></i></a>
+        </div>
+
+    </div>
+</html>
 {% endblock content %}
