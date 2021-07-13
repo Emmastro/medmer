@@ -37,8 +37,11 @@
                         <div class="form-group col-md-2 mb-0">
                             {{ form.age|as_crispy_field }}
                         </div>
-                        <div class="form-group col-md-2 mb-0">
-                            {{ form.password|as_crispy_field }}
+                         <div class="form-group col-md-4 mb-0">
+                             {{ form.password1|as_crispy_field  }}
+                         </div>
+                         <div class="form-group col-md-4 mb-0">
+                           {{ form.password2|as_crispy_field  }}    
                         </div>
                         </div>
                         <button class="btn btn-success" type="submit" >Submit</button>

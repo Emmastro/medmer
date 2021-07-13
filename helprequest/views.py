@@ -1,16 +1,14 @@
-from django.forms.models import fields_for_model
 from django.utils.decorators import method_decorator
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 
-from django.views.generic import ListView, DetailView, UpdateView, CreateView, FormView
+from django.views.generic import ListView, DetailView, UpdateView, CreateView
 from django.views.generic.base import TemplateView
 
 from helprequest.models import HelpRequest
 from patient.models import Patient
 
-from helprequest.forms import HelpRequestForm, HelpResponseForm
-
+from helprequest.forms import HelpRequestForm
 
 
 @method_decorator(login_required, name='dispatch')
@@ -61,9 +59,6 @@ class HelpRequestStatus(TemplateView):
 @method_decorator(login_required, name='dispatch')
 class HelpRequestUpdate(UpdateView):
     model = HelpRequest
-    fields = [
-            # "slug"
-            "medic_notes"
-            ]
+    fields = ["medic_notes"]
     template_name = 'help_response.html'
     success_url = '/' 
