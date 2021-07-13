@@ -1,12 +1,13 @@
 from django.forms.models import fields_for_model
 from django.utils.decorators import method_decorator
-
+from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, FormView
 from django.views.generic.base import TemplateView
 
 from helprequest.models import HelpRequest
+from patient.models import Patient
 
 from helprequest.forms import HelpRequestForm, HelpResponseForm
 
@@ -31,21 +32,20 @@ class HelpRequestDetail(DetailView):
 
 
 @method_decorator(login_required, name='dispatch')
-class RequestHelp(FormView):
+class RequestHelp(CreateView):
     """
     TODO: on save of the help request, link the user requesting help to the patient fild of the help request
     """
 
-
     template_name = 'help_request.html'
     form_class = HelpRequestForm
     success_url = 'status'
-   
+
     def form_valid(self, form):
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
-        # form.send_email()
-        return super().form_valid(form)
+        form.instance.patient =  Patient.objects.get(id=self.request.user.id)
+        form.save()
+
+        return redirect(self.success_url)
 
 
 @method_decorator(login_required, name='dispatch')

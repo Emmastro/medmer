@@ -7,6 +7,7 @@
     <div class="container">
     <form method="post" class=""> 
        {% csrf_token %}
+       {{form.errors}}
        <div class="form-row">
         <div class="form-group col mb-0">
             {{ form.patient_notes|as_crispy_field }}

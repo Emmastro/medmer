@@ -8,13 +8,11 @@ from crispy_forms.layout import Submit, Layout
 
 
 class HelpRequestForm(forms.ModelForm):
-    patient_notes = forms.TextInput()
-    patient_location = forms.TextInput()
-    
+
     class Meta:
         model = HelpRequest
-        fields = ['patient_notes', 'patient_location',]
-        exclude = ['medic-notes ']
+        fields = ['patient_notes', 'patient_location']
+        optional_fields = ['patient']
 
 class HelpResponseForm(forms.ModelForm):
     """
