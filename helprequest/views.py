@@ -1,14 +1,15 @@
+from django.forms.models import fields_for_model
 from django.utils.decorators import method_decorator
-from django.shortcuts import redirect
+
 from django.contrib.auth.decorators import login_required
 
-from django.views.generic import ListView, DetailView, UpdateView, CreateView
+from django.views.generic import ListView, DetailView, UpdateView, CreateView, FormView
 from django.views.generic.base import TemplateView
 
 from helprequest.models import HelpRequest
-from patient.models import Patient
 
-from helprequest.forms import HelpRequestForm
+from helprequest.forms import HelpRequestForm, HelpResponseForm
+
 
 
 @method_decorator(login_required, name='dispatch')
@@ -28,22 +29,32 @@ class HelpRequestDetail(DetailView):
     template_name = "help_request_detail.html"
     context_object_name = "help_request"
 
+    def post(self, request, *args, **kwargs):
+        form = HelpResponseForm(request.POST)
+
+        if form.is_valid():
+            form.instance.medic = medic.objects.get(id=self.kwargs['id'])
+            form.save()
+        
 
 @method_decorator(login_required, name='dispatch')
-class RequestHelp(CreateView):
+class RequestHelp(FormView):
     """
     TODO: on save of the help request, link the user requesting help to the patient fild of the help request
     """
 
+
     template_name = 'help_request.html'
     form_class = HelpRequestForm
     success_url = 'status'
-
+   
     def form_valid(self, form):
-        form.instance.patient =  Patient.objects.get(id=self.request.user.id)
         form.save()
 
-        return redirect(self.success_url)
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        # form.send_email()
+        return super().form_valid(form)
 
 
 @method_decorator(login_required, name='dispatch')
@@ -62,3 +73,8 @@ class HelpRequestUpdate(UpdateView):
     fields = ["medic_notes"]
     template_name = 'help_response.html'
     success_url = '/' 
+
+    def form_valid(self, form):
+
+        form.save()
+
