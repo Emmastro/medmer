@@ -9,6 +9,7 @@
     }
     .banner img {
         width:100%;
+        height: auto;
     }
     h1 {
         position:absolute;
@@ -60,6 +61,11 @@
     margin: auto;
     text-align: center;
  }
+ a {
+     font-size: 22px;
+     text-decoration: none;
+     font-weight: bolder;
+ }
 </style>
 <html>
     <body>
@@ -67,13 +73,15 @@
             <h1 > We all need Help </h1>
             <img src={%static 'dove.jpg'%}  alt="">
             <div class="content">
+                <h2 style="font-size: 40px; font-weight: bolder; color:black;"> Medical Help anywhere </h2>
             <p>
                 Getting you the <em>Help</em> you need
             </p>
-        </div>
+        
             <div class="card">
                 <a href={%url 'login'%}>Log back in</a>
             </div>
+        </div>
         </div>
     </body>
 </html>
