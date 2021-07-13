@@ -42,6 +42,11 @@ class RequestHelp(FormView):
     success_url = 'status'
    
     def form_valid(self, form):
+        form.save()
+        patient = self.request.POST['patient']
+        patient_notes = self.request.POST['patient_notes']
+        patient_location = self.request.POST['patient_location']
+
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
         # form.send_email()
