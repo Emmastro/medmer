@@ -1,11 +1,19 @@
 {% extends 'base/main.html' %}
 
 {%block content%}
-<p>id: {{help_request.id}}</p>
-<p>patient: {{help_request.patient}}</p>
-<p>medic: {{help_request.medic}}</p>
-<p>time_requested: {{help_request.time_requested}}</p>
-
-<!--TODO: Clic on this button should make a post request with the id of this Help request: `help_request.id`-->
-<button class="btn btn-success" type="submit" >Help</button>
-{%endblock content%}
+<html>
+    <body>
+        <div class="container">
+            <p>id: {{help_request.id}}</p>
+            <p>patient: {{help_request.patient}}</p>
+            <p>medic: {{help_request.medic}}</p>
+            <p>time_requested: {{help_request.time_requested}}</p>
+    
+            <!--TODO: Clic on this button should make a post request with the id of this Help request: `help_request.id`-->
+            <a href={%url '#'%}>
+            <button class="btn btn-success" type="submit" >Help</button></a>
+            {%endblock content%}
+    
+        </div>
+    </body>
+</html>
