@@ -12,14 +12,17 @@ People who might dispense help in case of emergency (anyone else) can register t
 * 2
 
 ## Table of Content
-* [Environment](#environment)
-* [Installation](#installation)
-* [File Descriptions](environment#file-descriptions)
-* [Usage](#usage)
-* [Examples of use](#examples-of-use)
-* [Bugs](#bugs)
-* [Authors](#authors)
-* [License](#license)
+- [MedMer - API](#medmer---api)
+      - [Functionalities](#functionalities)
+  - [Table of Content](#table-of-content)
+  - [Environment](#environment)
+  - [Installation](#installation)
+  - [File Descriptions](#file-descriptions)
+  - [Examples of use](#examples-of-use)
+  - [Registration page](#registration-page)
+  - [Bugs](#bugs)
+  - [Authors](#authors)
+  - [License](#license)
 
 ## Environment
 This project is interpreted/tested on Ubuntu 20.04.2 LTS using python3 (version 3.8.5)
@@ -32,13 +35,21 @@ This project is interpreted/tested on Ubuntu 20.04.2 LTS using python3 (version 
 * Install dependencies: `pip install -r requirements.txt`
 * Setup environment variables: make a copy of `.env.sample` and name it `.env`, and setup the values for your environment variables
 * Prep database models for migration: `python manage.py makemigrations`
-* Migrade database models: `python manage.py migrate`
+* Migrate database models: `python manage.py migrate`
 * Run server: `python manage.py runserver`
 
 
 ## File Descriptions
  
 ## Examples of use
+Below are some of the pictorial features that are on the front end
+
+![image](home/static/home.png)
+The above is a view of the home page, with the red and blue buttons for asking and responding to help respectively.
+
+## Registration page
+*  Patient registration
+  First time patients are registered in the page that is displayed below
 
 
 ## Bugs
