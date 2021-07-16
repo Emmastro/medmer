@@ -1,16 +1,20 @@
 from django.forms.models import fields_for_model
+
 from django.utils.decorators import method_decorator
 
 from django.contrib.auth.decorators import login_required
 
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, FormView
+
 from django.views.generic.base import TemplateView
 
 from helprequest.models import HelpRequest
 
 from helprequest.forms import HelpRequestForm, HelpResponseForm
 
+from django.shortcuts import redirect
 
+from datetime import datetime
 
 @method_decorator(login_required, name='dispatch')
 class HelpRequestList(ListView):
@@ -30,11 +34,20 @@ class HelpRequestDetail(DetailView):
     context_object_name = "help_request"
 
     def post(self, request, *args, **kwargs):
-        form = HelpResponseForm(request.POST)
+        request_id = request.POST["helprequestid"]
+        #save the form entry
+        #time = HelpRequest.time_accepted
 
-        if form.is_valid():
-            form.instance.medic = medic.objects.get(id=self.kwargs['id'])
-            form.save()
+        HelpRequest.objects.filter(**kwargs) .update(time_accepted = datetime.now())
+
+        #update time requested to time accepted
+        #save the medic id handling the case
+
+        # display the assigned id to particular helprequest
+        #
+        #save the medic id on the change help request time to help accepted
+        #save
+        return redirect('help_response', request_id)
         
 
 @method_decorator(login_required, name='dispatch')
@@ -49,6 +62,7 @@ class RequestHelp(FormView):
     success_url = 'status'
    
     def form_valid(self, form):
+        form.instance.patient = patient.get(id=self.kwargs['id'])
         form.save()
 
         # This method is called when valid form data has been POSTed.

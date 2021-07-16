@@ -1,11 +1,17 @@
 {% extends 'base/main.html' %}
 
-{%block content%}
+{% block content %}
 <p>id: {{help_request.id}}</p>
 <p>patient: {{help_request.patient}}</p>
 <p>medic: {{help_request.medic}}</p>
 <p>time_requested: {{help_request.time_requested}}</p>
 
 <!--TODO: Clic on this button should make a post request with the id of this Help request: `help_request.id`-->
-<button class="btn btn-success" type="submit" >Help</button>
-{%endblock content%}
+<form method="POST">
+    {% csrf_token %}
+<label for="helprequestid"> helprequest_d: {{help_request.id}}</label>
+<input type="text" id="helprequestid" name="helprequestid" value="{{help_request.id}}">
+<button class="btn btn-success" type="submit" >help</button>
+
+</form>
+{% endblock content %}

@@ -7,8 +7,8 @@ from helprequest.models import HelpRequest
 class HelpRequestForm(forms.ModelForm):
     class Meta:
         model = HelpRequest
-        fields = ['patient','patient_notes', 'patient_location',]
-        
+        fields = ['patient_notes', 'patient_location',]
+        optional_fields = ['patient']
 
 class HelpResponseForm(forms.ModelForm):
     """
