@@ -14,7 +14,7 @@ class HelpRequest(models.Model):
     patient_location = models.CharField(max_length=120, blank=True, null=True)
 
     time_requested = models.DateTimeField(auto_now_add=True)
-    time_accepted = models.DateTimeField( blank=True, null=True, auto_now_add=True)
+    time_accepted = models.DateTimeField( blank=True, null=True)
     time_concluded = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
