@@ -1,7 +1,17 @@
 {% extends 'base/main.html' %}
 
 {% block content %}
+{%for help_request in help_requests%}
 
+    <a href="{%url 'help_request_detail' pk=help_request.id%}">
+        <div>
+            <p>id: {{help_request.id}}</p>
+            <p>patient: {{help_request.patient}}</p>
+            <p>medic: {{help_request.medic}}</p>
+            <p>time_accepted: {{help_request.time_accepted}}</p>
+        </div>
+    </a>
+{%endfor%}
 <form method="post">
     {{form.errors}}
     {% csrf_token %}

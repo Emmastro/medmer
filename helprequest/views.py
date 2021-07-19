@@ -34,29 +34,21 @@ class HelpRequestDetail(DetailView):
     context_object_name = "help_request"
 
     def post(self, request, *args, **kwargs):
-        request_id = request.POST["helprequestid"]
-        #save the form entry
-        #time = HelpRequest.time_accepted
+        request_id = request.POST.get("helprequestid")
 
+      
         HelpRequest.objects.filter(**kwargs) .update(time_accepted = datetime.now())
-
-        #update time requested to time accepted
-        #save the medic id handling the case
-
-        # display the assigned id to particular helprequest
-        #
-        #save the medic id on the change help request time to help accepted
-        #save
+        print(kwargs)
+        print(HelpRequest.objects.filter(**kwargs))
+    
         return redirect('help_response', request_id)
         
 
 @method_decorator(login_required, name='dispatch')
 class RequestHelp(FormView):
-    """
+        """
     TODO: on save of the help request, link the user requesting help to the patient fild of the help request
-    """
-
-
+     """
     template_name = 'help_request.html'
     form_class = HelpRequestForm
     success_url = 'status'
@@ -69,7 +61,6 @@ class RequestHelp(FormView):
         # It should return an HttpResponse.
         # form.send_email()
         return super().form_valid(form)
-
 
 @method_decorator(login_required, name='dispatch')
 class HelpRequestStatus(TemplateView):
